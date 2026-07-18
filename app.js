@@ -10,7 +10,8 @@ function vl(){
 //云玩家崽崽
 function cloud() {
 	let cloud
-  cloud = 'baby' // js怎么写
+  cloud = 'cloud' // js怎么写啊
+  console.log("Git push test");
 }
 
 // 123123
