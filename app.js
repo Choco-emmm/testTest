@@ -2,9 +2,9 @@
 let speed = 10000;
 
 //vl
-function vl() {
+function sbdhx() {
 	let vl
-	vl = 'horssss'
+	vl = 'nmsl'
 }
 
 //云玩家崽崽
