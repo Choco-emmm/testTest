@@ -1,3 +1,3 @@
 
-let speed = 100;
+let speed = 1;
 
