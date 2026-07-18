@@ -8,9 +8,9 @@ function vl(){
 }
 
 //云玩家崽崽
-function cloud(){
+function cloud() {
 	let cloud
-	cloud='baby'
+  cloud = 'baby' // js怎么写
 }
 
 // 123123
