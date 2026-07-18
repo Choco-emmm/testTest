@@ -13,6 +13,7 @@ function cloud() {
 	let cloud
   cloud = 'cloud' // 那就乱写
   console.log("Git push test");
+  ciallo~
 }
 
 // 123123
