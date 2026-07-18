@@ -5,6 +5,7 @@ let speed = 10000;
 function vl() {
 	let vl
 	vl = 'horssss'
+	vl = 6
 }
 
 //云玩家崽崽
