@@ -16,6 +16,5 @@ function dhxbaby() {
 	let cloud
   cloud = 'dhx' // 那就乱写
   console.log("Git push test");
-  ciallo~
-  ~ollaic
+  
 }
