@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Minimal package to satisfy Qgents test command resolver",
   "scripts": {
-    "test": "echo test-passed"
+    "test": "node test.js"
   }
 }
