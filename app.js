@@ -22,6 +22,10 @@ function dhxbaby() {
 // 引入原生 http 模块
 let http = require('http');
 
+// 读取版本号
+let pkg = require('./package.json');
+let version = pkg.version;
+
 // 创建健康检查服务器
 function createServer() {
 	let server = http.createServer(function(req, res) {
@@ -29,6 +33,10 @@ function createServer() {
 		if (req.url === '/health') {
 			res.writeHead(200, {'Content-Type': 'application/json'});
 			res.end('{"status":"ok"}');
+		} else if (req.url === '/version') {
+			// 版本信息路径 /version 返回 200 和 JSON
+			res.writeHead(200, {'Content-Type': 'application/json'});
+			res.end(JSON.stringify({version: version}));
 		} else {
 			// 其他路径统一返回 404
 			res.writeHead(404, {'Content-Type': 'application/json'});
