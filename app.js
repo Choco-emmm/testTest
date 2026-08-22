@@ -1,4 +1,3 @@
-
 let speed = 10000;
 
 //vl
@@ -7,7 +6,6 @@ function sbdhx() {
 	vl = 'nmsl'
 
 }
-
 
 123123
 // 123123
@@ -32,7 +30,11 @@ function createServer() {
 		// 健康检查路径 /health 返回 200 和 JSON
 		if (req.url === '/health') {
 			res.writeHead(200, {'Content-Type': 'application/json'});
-			res.end('{"status":"ok"}');
+			res.end('{\"status\":\"ok\"}');
+		} else if (req.url === '/info') {
+			// 信息路径 /info 返回 200 和 JSON 包含版本和环境
+			res.writeHead(200, {'Content-Type': 'application/json'});
+			res.end(JSON.stringify({version: version, environment: process.env.NODE_ENV || 'development'}));
 		} else if (req.url === '/version') {
 			// 版本信息路径 /version 返回 200 和 JSON
 			res.writeHead(200, {'Content-Type': 'application/json'});
@@ -40,7 +42,7 @@ function createServer() {
 		} else {
 			// 其他路径统一返回 404
 			res.writeHead(404, {'Content-Type': 'application/json'});
-			res.end('{"error":"not found"}');
+			res.end('{\"error\":\"not found\"}');
 		}
 	});
 	return server;

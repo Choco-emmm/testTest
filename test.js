@@ -1,4 +1,3 @@
-
 let http = require('http');
 let assert = require('assert');
 let app = require('./app');
@@ -40,25 +39,48 @@ server.listen(0, function() {
 					assert.strictEqual(data.version, '1.0.0');
 					console.log('/version returned 200 and version ' + data.version);
 
-					// 测试 / 返回 404
-					let rootReq = http.get({
+					// 测试 /info 返回 200 和 JSON 包含版本和环境
+					let infoReq = http.get({
 						host: '127.0.0.1',
 						port: port,
-						path: '/'
+						path: '/info'
 					}, function(res3) {
 						let body3 = '';
 						res3.on('data', function(chunk) {
 							body3 += chunk;
 						});
 						res3.on('end', function() {
-							assert.strictEqual(res3.statusCode, 404);
-							assert.strictEqual(body3, '{"error":"not found"}');
-							console.log('/ returned 404');
-							server.close();
-							console.log('All tests passed');
+							assert.strictEqual(res3.statusCode, 200);
+							assert.strictEqual(res3.headers['content-type'], 'application/json');
+							let data3 = JSON.parse(body3);
+							assert.strictEqual(data3.version, '1.0.0');
+							assert.ok(data3.environment);
+							console.log('/info returned 200 and version ' + data3.version + ', environment ' + data3.environment);
+
+							// 测试 / 返回 404
+							let rootReq = http.get({
+								host: '127.0.0.1',
+								port: port,
+								path: '/'
+							}, function(res4) {
+								let body4 = '';
+								res4.on('data', function(chunk) {
+									body4 += chunk;
+								});
+								res4.on('end', function() {
+									assert.strictEqual(res4.statusCode, 404);
+									assert.strictEqual(body4, '{"error":"not found"}');
+									console.log('/ returned 404');
+									server.close();
+									console.log('All tests passed');
+								});
+							});
+							rootReq.on('error', function(err) {
+								throw err;
+							});
 						});
 					});
-					rootReq.on('error', function(err) {
+					infoReq.on('error', function(err) {
 						throw err;
 					});
 				});
